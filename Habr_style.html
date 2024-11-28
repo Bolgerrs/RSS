@@ -1,0 +1,108 @@
+# Попробуем снова создать HTML-файл для отображения RSS-фида в стиле, похожем на Хабр.
+
+html_habr_style_content = """<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSS Фид: Идеи для бизнеса</title>
+  <style>
+    /* Основной стиль страницы */
+    body {
+      font-family: "Arial", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background-color: #2a3a4e;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      font-size: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    pre {
+      background-color: #f7f9fa;
+      border: 1px solid #e0e6eb;
+      border-radius: 5px;
+      padding: 15px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 14px;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    a:hover {
+      background-color: #0056b3;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Просмотр RSS-фида</h1>
+  </header>
+  <div class="container">
+    <h2>Содержимое RSS-фида</h2>
+    <pre id="rss-content">Загрузка...</pre>
+    <a href="business_ideas_feed.xml" download>Скачать RSS-фид</a>
+  </div>
+  <footer>
+    <p>© 2024 RSS Viewer | Сделано с заботой о вашем удобстве.</p>
+  </footer>
+  <script>
+    // Загрузка RSS-файла и отображение его содержимого
+    fetch('business_ideas_feed.xml')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('rss-content').textContent = data;
+      })
+      .catch(error => {
+        document.getElementById('rss-content').textContent = 'Не удалось загрузить RSS-фид: ' + error;
+      });
+  </script>
+</body>
+</html>
+"""
+
+# Сохранение файла
+html_habr_style_file_path = "/mnt/data/rss_feed_habr_style.html"
+with open(html_habr_style_file_path, "w", encoding="utf-8") as file:
+    file.write(html_habr_style_content)
+
+html_habr_style_file_path
